@@ -65,7 +65,7 @@ class _PriceScreenState extends State<PriceScreen> {
                 title: Text("$name"),
                 subtitle: Text("$id"),
                 trailing: Text(
-                  "$exchangeRate $selectedCurrency",
+                  "${exchangeRate.toStringAsFixed(2)} $selectedCurrency",
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 25,
