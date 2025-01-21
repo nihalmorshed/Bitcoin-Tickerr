@@ -24,12 +24,12 @@ A Flutter application that tracks real-time cryptocurrency prices across multipl
 
 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/bitcoin-price-tracker.git
+git clone https://github.com/nihalmorshed/Bitcoin-Tickerr.git
 ```
 
 2. Navigate to the project directory
 ```bash
-cd bitcoin-price-tracker
+cd Bitcoin-Tickerr
 ```
 
 3. Install dependencies
