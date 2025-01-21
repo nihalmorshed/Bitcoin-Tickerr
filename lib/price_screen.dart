@@ -1,5 +1,4 @@
 import 'package:bitcoin_ticker/coin_data.dart';
-import 'package:bitcoin_ticker/constants.dart';
 import 'package:bitcoin_ticker/network.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +13,7 @@ class _PriceScreenState extends State<PriceScreen> {
   String selectedCurrency = 'USD';
   String selectedCrypto = 'ETH';
   double exchangeRate = 0.0;
+  Map<String, double> exchangeRates = {};
 
   @override
   void initState() {
@@ -21,7 +21,19 @@ class _PriceScreenState extends State<PriceScreen> {
     getExchangeRate(selectedCrypto, selectedCurrency);
   }
 
-  void getExchangeRate(String cr, String cur) async {
+  Future<void> getExchangeRates() async {
+    for (String crypto in cryptoList.map((e) => e['id']!).toList()) {
+      // At the moment , dont understand
+      NetworkHelper networkHelper =
+          NetworkHelper(Crypto: crypto, Currency: selectedCurrency);
+      var exchangerateData = await networkHelper.getData();
+      setState(() {
+        exchangeRates[crypto] = exchangerateData['rate'];
+      });
+    }
+  }
+
+  Future getExchangeRate(String cr, String cur) async {
     NetworkHelper networkHelper = NetworkHelper(
       Crypto: cr,
       Currency: cur,
@@ -30,6 +42,7 @@ class _PriceScreenState extends State<PriceScreen> {
     setState(() {
       exchangeRate = exchangerateData['rate'];
     });
+    return exchangerateData;
   }
 
   Widget getCryptoList() {
@@ -42,8 +55,7 @@ class _PriceScreenState extends State<PriceScreen> {
           placeholder: 'assets/loading.gif',
           image: cryptoList[index]['icon']!,
         );
-
-        getExchangeRate(id, selectedCurrency);
+        double rate = exchangeRates[id] ?? 0.0;
         return Column(
           children: [
             Card(
@@ -65,7 +77,7 @@ class _PriceScreenState extends State<PriceScreen> {
                 title: Text("$name"),
                 subtitle: Text("$id"),
                 trailing: Text(
-                  "${exchangeRate.toStringAsFixed(2)} $selectedCurrency",
+                  "${rate.toStringAsFixed(2)} $selectedCurrency",
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 25,
@@ -225,9 +237,9 @@ class _PriceScreenState extends State<PriceScreen> {
                     SizedBox(
                       height: 10,
                     ),
-                    TargetPlatform.android == defaultTargetPlatform
-                        ? getDropDownButton()
-                        : getCupertinoPicker(),
+                    // TargetPlatform.android == defaultTargetPlatform
+                    //     ? getDropDownButton()
+                    //     : getCupertinoPicker(),
                   ],
                 ),
               ),

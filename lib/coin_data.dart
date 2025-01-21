@@ -40,18 +40,18 @@ const cryptoList = [
     'icon':
         'https://th.bing.com/th/id/R.b569e27b17bad5052640aba4ba9633bb?rik=%2br5AzEEEgpqtCw&pid=ImgRaw&r=0',
   },
-  {
-    'id': 'USDT',
-    'name': 'Tether',
-    'icon':
-        'https://www.coin-report.net/en/wp-content/uploads/sites/11/2018/01/tether-coin.png',
-  },
-  {
-    'id': 'USDC',
-    'name': 'USD Coin',
-    'icon':
-        'https://cdn3d.iconscout.com/3d/premium/thumb/usd-coin-usdc-cryptocurrency-5108586-4263923.png',
-  },
+  // {
+  //   'id': 'USDT',
+  //   'name': 'Tether',
+  //   'icon':
+  //       'https://www.coin-report.net/en/wp-content/uploads/sites/11/2018/01/tether-coin.png',
+  // },
+  // {
+  //   'id': 'USDC',
+  //   'name': 'USD Coin',
+  //   'icon':
+  //       'https://cdn3d.iconscout.com/3d/premium/thumb/usd-coin-usdc-cryptocurrency-5108586-4263923.png',
+  // },
   // {
   //   'id': 'XRP',
   //   'name': 'XRP',
